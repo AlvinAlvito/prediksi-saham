@@ -1,0 +1,362 @@
+[
+  {
+    "Kode Saham": "BBCA",
+    "Nama Saham": "Bank Central Asia",
+    "PER": "19.28",
+    "ROE (%)": "23.7",
+    "Volume (Avg) Lembar": "121,530,000",
+    "Market Cap (IDR Triliun)": "1080"
+  },
+  {
+    "Kode Saham": "BBRI",
+    "Nama Saham": "Bank Rakyat Indonesia",
+    "PER": "10.23",
+    "ROE (%)": "19.34",
+    "Volume (Avg) Lembar": "155,000,000",
+    "Market Cap (IDR Triliun)": "594"
+  },
+  {
+    "Kode Saham": "BMRI",
+    "Nama Saham": "Bank Mandiri",
+    "PER": "11.75",
+    "ROE (%)": "20.6",
+    "Volume (Avg) Lembar": "77,800,000",
+    "Market Cap (IDR Triliun)": "535"
+  },
+  {
+    "Kode Saham": "TLKM",
+    "Nama Saham": "Telkom Indonesia",
+    "PER": "14.92",
+    "ROE (%)": "17.1",
+    "Volume (Avg) Lembar": "42,300,000",
+    "Market Cap (IDR Triliun)": "357"
+  },
+  {
+    "Kode Saham": "UNVR",
+    "Nama Saham": "Unilever Indonesia",
+    "PER": "26.4",
+    "ROE (%)": "69.5",
+    "Volume (Avg) Lembar": "6,200,000",
+    "Market Cap (IDR Triliun)": "300"
+  },
+  {
+    "Kode Saham": "ASII",
+    "Nama Saham": "Astra International",
+    "PER": "8.63",
+    "ROE (%)": "13.9",
+    "Volume (Avg) Lembar": "15,200,000",
+    "Market Cap (IDR Triliun)": "290"
+  },
+  {
+    "Kode Saham": "ICBP",
+    "Nama Saham": "Indofood CBP",
+    "PER": "19.8",
+    "ROE (%)": "23.1",
+    "Volume (Avg) Lembar": "2,100,000",
+    "Market Cap (IDR Triliun)": "130"
+  },
+  {
+    "Kode Saham": "SMGR",
+    "Nama Saham": "Semen Indonesia",
+    "PER": "9.74",
+    "ROE (%)": "15.6",
+    "Volume (Avg) Lembar": "1,800,000",
+    "Market Cap (IDR Triliun)": "60"
+  },
+  {
+    "Kode Saham": "CPIN",
+    "Nama Saham": "Charoen Pokphand",
+    "PER": "17.6",
+    "ROE (%)": "18.2",
+    "Volume (Avg) Lembar": "2,750,000",
+    "Market Cap (IDR Triliun)": "105"
+  },
+  {
+    "Kode Saham": "KLBF",
+    "Nama Saham": "Kalbe Farma",
+    "PER": "24.5",
+    "ROE (%)": "20.4",
+    "Volume (Avg) Lembar": "1,600,000",
+    "Market Cap (IDR Triliun)": "89"
+  },
+  {
+    "Kode Saham": "ADRO",
+    "Nama Saham": "Adaro Energy",
+    "PER": "7.85",
+    "ROE (%)": "16.1",
+    "Volume (Avg) Lembar": "35,000,000",
+    "Market Cap (IDR Triliun)": "90"
+  },
+  {
+    "Kode Saham": "ANTM",
+    "Nama Saham": "Aneka Tambang",
+    "PER": "12.3",
+    "ROE (%)": "14.7",
+    "Volume (Avg) Lembar": "40,000,000",
+    "Market Cap (IDR Triliun)": "110"
+  },
+  {
+    "Kode Saham": "INDF",
+    "Nama Saham": "Indofood Sukses Makmur",
+    "PER": "10.7",
+    "ROE (%)": "18.2",
+    "Volume (Avg) Lembar": "3,400,000",
+    "Market Cap (IDR Triliun)": "140"
+  },
+  {
+    "Kode Saham": "INKP",
+    "Nama Saham": "Indah Kiat Pulp & Paper",
+    "PER": "7.9",
+    "ROE (%)": "20",
+    "Volume (Avg) Lembar": "1,200,000",
+    "Market Cap (IDR Triliun)": "80"
+  },
+  {
+    "Kode Saham": "ISAT",
+    "Nama Saham": "Indosat Ooredoo",
+    "PER": "13.2",
+    "ROE (%)": "9.5",
+    "Volume (Avg) Lembar": "8,000,000",
+    "Market Cap (IDR Triliun)": "95"
+  },
+  {
+    "Kode Saham": "PGAS",
+    "Nama Saham": "Perusahaan Gas Negara",
+    "PER": "6.3",
+    "ROE (%)": "8.8",
+    "Volume (Avg) Lembar": "20,000,000",
+    "Market Cap (IDR Triliun)": "75"
+  },
+  {
+    "Kode Saham": "PTBA",
+    "Nama Saham": "Bukit Asam",
+    "PER": "5.7",
+    "ROE (%)": "21",
+    "Volume (Avg) Lembar": "6,500,000",
+    "Market Cap (IDR Triliun)": "72"
+  },
+  {
+    "Kode Saham": "UNTR",
+    "Nama Saham": "United Tractors",
+    "PER": "6.8",
+    "ROE (%)": "22.5",
+    "Volume (Avg) Lembar": "5,000,000",
+    "Market Cap (IDR Triliun)": "180"
+  },
+  {
+    "Kode Saham": "EXCL",
+    "Nama Saham": "XL Axiata",
+    "PER": "9.5",
+    "ROE (%)": "11.7",
+    "Volume (Avg) Lembar": "7,000,000",
+    "Market Cap (IDR Triliun)": "60"
+  },
+  {
+    "Kode Saham": "MDKA",
+    "Nama Saham": "Merdeka Copper Gold",
+    "PER": "18.2",
+    "ROE (%)": "7.4",
+    "Volume (Avg) Lembar": "11,000,000",
+    "Market Cap (IDR Triliun)": "50"
+  },
+  {
+    "Kode Saham": "ARTO",
+    "Nama Saham": "Bank Jago",
+    "PER": "21.7",
+    "ROE (%)": "4.5",
+    "Volume (Avg) Lembar": "3,800,000",
+    "Market Cap (IDR Triliun)": "45"
+  },
+  {
+    "Kode Saham": "SIDO",
+    "Nama Saham": "Sido Muncul",
+    "PER": "18.6",
+    "ROE (%)": "23",
+    "Volume (Avg) Lembar": "2,300,000",
+    "Market Cap (IDR Triliun)": "38"
+  },
+  {
+    "Kode Saham": "TOWR",
+    "Nama Saham": "Sarana Menara Nusantara",
+    "PER": "10.5",
+    "ROE (%)": "18.1",
+    "Volume (Avg) Lembar": "1,900,000",
+    "Market Cap (IDR Triliun)": "40"
+  },
+  {
+    "Kode Saham": "ADMR",
+    "Nama Saham": "Adaro Minerals",
+    "PER": "15.9",
+    "ROE (%)": "14.3",
+    "Volume (Avg) Lembar": "9,000,000",
+    "Market Cap (IDR Triliun)": "35"
+  },
+  {
+    "Kode Saham": "GOTO",
+    "Nama Saham": "GoTo Gojek Tokopedia",
+    "PER": "0",
+    "ROE (%)": "-18.7",
+    "Volume (Avg) Lembar": "950,000,000",
+    "Market Cap (IDR Triliun)": "75"
+  },
+  {
+    "Kode Saham": "AMRT",
+    "Nama Saham": "Alfamart",
+    "PER": "25.3",
+    "ROE (%)": "28.4",
+    "Volume (Avg) Lembar": "4,800,000",
+    "Market Cap (IDR Triliun)": "95"
+  },
+  {
+    "Kode Saham": "JSMR",
+    "Nama Saham": "Jasa Marga",
+    "PER": "8.4",
+    "ROE (%)": "11.2",
+    "Volume (Avg) Lembar": "2,000,000",
+    "Market Cap (IDR Triliun)": "33"
+  },
+  {
+    "Kode Saham": "BBTN",
+    "Nama Saham": "Bank Tabungan Negara",
+    "PER": "6.7",
+    "ROE (%)": "10.5",
+    "Volume (Avg) Lembar": "5,400,000",
+    "Market Cap (IDR Triliun)": "40"
+  },
+  {
+    "Kode Saham": "BRIS",
+    "Nama Saham": "BRI Syariah",
+    "PER": "11.1",
+    "ROE (%)": "17.2",
+    "Volume (Avg) Lembar": "6,700,000",
+    "Market Cap (IDR Triliun)": "55"
+  },
+  {
+    "Kode Saham": "MAPA",
+    "Nama Saham": "MAP Aktif Adiperkasa",
+    "PER": "15.4",
+    "ROE (%)": "22.3",
+    "Volume (Avg) Lembar": "900,000",
+    "Market Cap (IDR Triliun)": "30"
+  },
+  {
+    "Kode Saham": "MAPI",
+    "Nama Saham": "Mitra Adiperkasa",
+    "PER": "16.2",
+    "ROE (%)": "21.9",
+    "Volume (Avg) Lembar": "2,600,000",
+    "Market Cap (IDR Triliun)": "47"
+  },
+  {
+    "Kode Saham": "MEDC",
+    "Nama Saham": "Medco Energi",
+    "PER": "7.2",
+    "ROE (%)": "14.8",
+    "Volume (Avg) Lembar": "22,000,000",
+    "Market Cap (IDR Triliun)": "48"
+  },
+  {
+    "Kode Saham": "PGEO",
+    "Nama Saham": "Pertamina Geothermal",
+    "PER": "10.5",
+    "ROE (%)": "11.6",
+    "Volume (Avg) Lembar": "1,200,000",
+    "Market Cap (IDR Triliun)": "42"
+  },
+  {
+    "Kode Saham": "BRPT",
+    "Nama Saham": "Barito Pacific",
+    "PER": "12.6",
+    "ROE (%)": "8.3",
+    "Volume (Avg) Lembar": "18,000,000",
+    "Market Cap (IDR Triliun)": "28"
+  },
+  {
+    "Kode Saham": "ESSA",
+    "Nama Saham": "Surya Esa Perkasa",
+    "PER": "11.3",
+    "ROE (%)": "10.7",
+    "Volume (Avg) Lembar": "3,200,000",
+    "Market Cap (IDR Triliun)": "22"
+  },
+  {
+    "Kode Saham": "CTRA",
+    "Nama Saham": "Ciputra Development",
+    "PER": "9.9",
+    "ROE (%)": "13.4",
+    "Volume (Avg) Lembar": "2,800,000",
+    "Market Cap (IDR Triliun)": "40"
+  },
+  {
+    "Kode Saham": "JPFA",
+    "Nama Saham": "Japfa Comfeed",
+    "PER": "13.5",
+    "ROE (%)": "15",
+    "Volume (Avg) Lembar": "1,500,000",
+    "Market Cap (IDR Triliun)": "36"
+  },
+  {
+    "Kode Saham": "AKRA",
+    "Nama Saham": "AKR Corporindo",
+    "PER": "10.9",
+    "ROE (%)": "17.6",
+    "Volume (Avg) Lembar": "2,100,000",
+    "Market Cap (IDR Triliun)": "33"
+  },
+  {
+    "Kode Saham": "MBMA",
+    "Nama Saham": "Merdeka Battery Materials",
+    "PER": "25.1",
+    "ROE (%)": "6.2",
+    "Volume (Avg) Lembar": "3,700,000",
+    "Market Cap (IDR Triliun)": "41"
+  },
+  {
+    "Kode Saham": "AMMN",
+    "Nama Saham": "Amman Mineral Internasional",
+    "PER": "17.8",
+    "ROE (%)": "12.5",
+    "Volume (Avg) Lembar": "6,300,000",
+    "Market Cap (IDR Triliun)": "92"
+  },
+  {
+    "Kode Saham": "ITMG",
+    "Nama Saham": "Indo Tambangraya Megah",
+    "PER": "4.9",
+    "ROE (%)": "28.3",
+    "Volume (Avg) Lembar": "1,400,000",
+    "Market Cap (IDR Triliun)": "65"
+  },
+  {
+    "Kode Saham": "ELSA",
+    "Nama Saham": "Elnusa Tbk",
+    "PER": "8.9",
+    "ROE (%)": "12.5",
+    "Volume (Avg) Lembar": "3,500,000",
+    "Market Cap (IDR Triliun)": "18"
+  },
+  {
+    "Kode Saham": "NCKL",
+    "Nama Saham": "Trimegah Bangun Persada",
+    "PER": "22.4",
+    "ROE (%)": "8.9",
+    "Volume (Avg) Lembar": "4,200,000",
+    "Market Cap (IDR Triliun)": "39"
+  },
+  {
+    "Kode Saham": "BUKA",
+    "Nama Saham": "Bukalapak",
+    "PER": "0",
+    "ROE (%)": "-20.1",
+    "Volume (Avg) Lembar": "120,000,000",
+    "Market Cap (IDR Triliun)": "22"
+  },
+  {
+    "Kode Saham": "TPIA",
+    "Nama Saham": "Chandra Asri Petrochemical",
+    "PER": "11.3",
+    "ROE (%)": "9.8",
+    "Volume (Avg) Lembar": "2,800,000",
+    "Market Cap (IDR Triliun)": "53"
+  }
+]
