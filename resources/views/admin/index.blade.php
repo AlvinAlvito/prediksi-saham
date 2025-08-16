@@ -21,18 +21,18 @@
                 <div class="boxes">
                     <div class="box box1">
                         <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Pegawai</span>
-                        <span class="number">45</span>
+                        <span class="text">Total Saham</span>
+                        <span class="number">{{ $radarSaham->count() }}</span>
                     </div>
                     <div class="box box2">
                         <i class="uil uil-comments"></i>
-                        <span class="text">Total Mandor</span>
-                        <span class="number">3</span>
+                        <span class="text">Total Fuzzifikasi</span>
+                        <span class="number">{{ $fuzzifikasi->count() }}</span>
                     </div>
                     <div class="box box3">
                         <i class="uil uil-share"></i>
-                        <span class="text">Total Sektor</span>
-                        <span class="number">4</span>
+                        <span class="text">Total Hasil Rekomendasi</span>
+                        <span class="number">{{ $kategoriDistribusi->sum() }}</span>
                     </div>
                 </div>
             </div>
@@ -44,21 +44,28 @@
                 </div>
 
                 <div class="row">
+                    <!-- Pie Chart: Distribusi Kategori -->
                     <div class="col-lg-6 col-sm-12 mb-4">
-                        <span class="h5 d-block text-center mb-2">Jumlah Buah per Sektor</span>
-                        <canvas id="chartSektor"></canvas>
+                        <span class="h5 d-block text-center mb-2">Distribusi Kategori Saham</span>
+                        <div id="chartKategori"></div>
                     </div>
+
+                    <!-- Bar Chart: Top 10 Saham -->
                     <div class="col-lg-6 col-sm-12 mb-4">
-                        <span class="h5 d-block text-center mb-2">Jumlah Buah per Pegawai</span>
-                        <canvas id="chartPegawai"></canvas>
+                        <span class="h5 d-block text-center mb-2">Top 10 Saham</span>
+                        <div id="chartTopSaham"></div>
                     </div>
+
+                    <!-- Radar Chart -->
                     <div class="col-lg-6 col-sm-12 mb-4">
-                        <span class="h5 d-block text-center mb-2">Jumlah Buah per Cuaca</span>
-                        <canvas id="chartCuaca"></canvas>
+                        <span class="h5 d-block text-center mb-2">Radar Fundamental Saham</span>
+                        <div id="chartRadar"></div>
                     </div>
+
+                    <!-- Stacked Bar Chart -->
                     <div class="col-lg-6 col-sm-12 mb-4">
-                        <span class="h5 d-block text-center mb-2">Top 5 Pegawai dengan Pendapatan Tertinggi</span>
-                        <canvas id="chartPendapatan"></canvas>
+                        <span class="h5 d-block text-center mb-2">Fuzzifikasi Saham</span>
+                        <div id="chartFuzzifikasi"></div>
                     </div>
                 </div>
 
@@ -66,87 +73,75 @@
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <script>
-        async function fetchChartData(url) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return await response.json();
-            } catch (error) {
-                console.error("Error fetching data from " + url + ": ", error);
-                return {
-                    labels: [],
-                    data: []
-                };
+        // ================
+        // Pie Chart Distribusi Kategori
+        // ================
+        var optionsKategori = {
+            chart: { type: 'pie' },
+            series: @json(array_values($kategoriDistribusi->toArray())),
+            labels: @json(array_keys($kategoriDistribusi->toArray()))
+        };
+        new ApexCharts(document.querySelector("#chartKategori"), optionsKategori).render();
+
+        // ================
+        // Bar Chart Top Saham
+        // ================
+        var optionsTopSaham = {
+            chart: { type: 'bar', height: 350 },
+            series: [{
+                name: 'Persentase',
+                data: @json($topSaham->pluck('persentase'))
+            }],
+            xaxis: {
+                categories: @json($topSaham->pluck('saham.nama_saham'))
             }
-        }
+        };
+        new ApexCharts(document.querySelector("#chartTopSaham"), optionsTopSaham).render();
 
-        async function renderCharts() {
-            // 1. Buah per sektor
-            const sektor = await fetchChartData('/chart/sektor');
-            new Chart(document.getElementById('chartSektor'), {
-                type: 'doughnut',
-                data: {
-                    labels: sektor.labels,
-                    datasets: [{
-                        data: sektor.data,
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8BC34A']
-                    }]
-                }
-            });
-
-            // 2. Buah per pegawai
-            const pegawai = await fetchChartData('/chart/pegawai');
-            new Chart(document.getElementById('chartPegawai'), {
-                type: 'doughnut',
-                data: {
-                    labels: pegawai.labels,
-                    datasets: [{
-                        data: pegawai.data,
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#009688', '#9C27B0']
-                    }]
-                }
-            });
-
-            // 3. Buah per cuaca
-            const cuaca = await fetchChartData('/chart/cuaca');
-            new Chart(document.getElementById('chartCuaca'), {
-                type: 'doughnut',
-                data: {
-                    labels: cuaca.labels,
-                    datasets: [{
-                        data: cuaca.data,
-                        backgroundColor: ['#03A9F4', '#FF5722', '#8BC34A']
-                    }]
-                }
-            });
-
-            // 4. Pendapatan tertinggi
-            const pendapatan = await fetchChartData('/chart/pendapatan-tertinggi');
-            new Chart(document.getElementById('chartPendapatan'), {
-                type: 'bar',
-                data: {
-                    labels: pendapatan.labels,
-                    datasets: [{
-                        label: 'Total Pendapatan',
-                        data: pendapatan.data,
-                        backgroundColor: '#4CAF50'
-                    }]
+        // ================
+        // Radar Chart (PER, ROE, Volume, Market Cap)
+        // ================
+        var optionsRadar = {
+            chart: { type: 'radar', height: 350 },
+            series: [
+                @foreach($radarSaham as $s)
+                {
+                    name: "{{ $s->kode_saham }}",
+                    data: [{{ $s->per }}, {{ $s->roe }}, {{ $s->volume }}, {{ $s->market_cap }}]
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
+                @endforeach
+            ],
+            labels: ['PER', 'ROE', 'Volume', 'Market Cap']
+        };
+        new ApexCharts(document.querySelector("#chartRadar"), optionsRadar).render();
 
-        // Jalankan saat halaman siap
-        document.addEventListener('DOMContentLoaded', renderCharts);
+        // ================
+        // Stacked Bar Chart (Fuzzifikasi)
+        // ================
+        var optionsFuzzifikasi = {
+            chart: { type: 'bar', stacked: true, height: 350 },
+            series: [
+                {
+                    name: 'PER Rendah',
+                    data: @json($fuzzifikasi->pluck('per_rendah'))
+                },
+                {
+                    name: 'PER Sedang',
+                    data: @json($fuzzifikasi->pluck('per_sedang'))
+                },
+                {
+                    name: 'PER Tinggi',
+                    data: @json($fuzzifikasi->pluck('per_tinggi'))
+                }
+            ],
+            xaxis: {
+                categories: @json($fuzzifikasi->pluck('saham.nama_saham'))
+            }
+        };
+        new ApexCharts(document.querySelector("#chartFuzzifikasi"), optionsFuzzifikasi).render();
     </script>
 @endsection

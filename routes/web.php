@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\SahamController;
 use App\Http\Controllers\FuzzyfikasiController;
 use App\Http\Controllers\RekomendasiController;
+use App\Http\Controllers\PublicController;
+
 
 // ===================
-// Halaman Login
+// Halaman Public User
 // ===================
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+Route::get('/', [App\Http\Controllers\PublicController::class, 'index'])->name('login');
 
 // ===================
 // Proses Login Manual
@@ -38,14 +38,15 @@ Route::get('/logout', function () {
 })->name('logout');
 
 // ===================
-// Dashboard Admin
+// Dashboard / Charts
 // ===================
+use App\Http\Controllers\DashboardController;
+
 Route::get('/admin', function () {
-    if (!session('is_admin')) {
-        return redirect('/');
-    }
-    return view('admin.index');
-})->name('dashboard');
+    if (!session('is_admin')) return redirect('/');
+    return app(DashboardController::class)->index();
+})->name('admin.dashboard');
+
 
 // ===================
 // CRUD Saham
@@ -84,3 +85,4 @@ Route::get('/admin/rekomendasi', function () {
 Route::get('/admin/rekomendasi/download', [RekomendasiController::class, 'downloadPDF'])->name('rekomendasi.download');
 
 
+Route::get('/api/saham/{id}', [PublicController::class, 'getSaham']);

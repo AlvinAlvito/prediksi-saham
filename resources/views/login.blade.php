@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/css/styles.css">
 
     <script src="https://kit.fontawesome.com/aa7454d09f.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -46,17 +49,82 @@
     <section class="hero gridSection">
         <div class="sectionDesc">
             <h1 class="headline">
-                Most popular way to trade <span class="cryptoText">CRYPTO</span>.
+                Temukan <span class="cryptoText">Rekomendasi Saham</span> Terbaik Untuk Investasi Anda.
             </h1>
             <p class="sub-headline">
-                You can see a record of all your transactions
-                anytime you want and never have to worry about
-                someone erasing or stealing your money!
+                Sistem kami menganalisis data fundamental saham (PER, ROE, Volume, Market Cap)
+                menggunakan metode fuzzy logic untuk memberikan rekomendasi saham yang lebih akurat
+                dan terpercaya bagi investor.
             </p>
+
+            <!-- Tombol -->
             <div class="btnContainer">
-                <button class="btn btn1">Contact Now</button>
-                <button class="btn btn2">play video <i class="fa-solid fa-play"></i></button>
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btns btn1">
+                    Lihat Rekomendasi
+                </button>
+                <button class="btns btn2">Pelajari Lebih Lanjut <i class="fa-solid fa-play"></i></button>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content shadow-lg">
+                        <div class="modal-header bg-primary text-white">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                <i class="bi bi-bar-chart-line"></i> Lihat Rekomendasi Saham
+                            </h1>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="mb-4">
+                                <label for="sahamSelect" class="form-label fw-bold">Pilih Saham</label>
+                                <select id="sahamSelect" class="form-select">
+                                    <option value="">-- Pilih Saham --</option>
+                                    @foreach ($saham as $s)
+                                        <option value="{{ $s->id }}">{{ $s->nama_saham }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <!-- Informasi Fundamental -->
+                                <div class="col-md-6 mb-3">
+                                    <div class="card border-info shadow-sm">
+                                        <div class="card-header bg-info text-white fw-bold">
+                                            <i class="bi bi-graph-up"></i> Informasi Fundamental Saham
+                                        </div>
+                                        <ul class="list-group list-group-flush" id="fundamentalList">
+                                            <li class="list-group-item text-center text-muted">
+                                                Silakan pilih saham terlebih dahulu...
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Rekomendasi -->
+                                <div class="col-md-6 mb-3">
+                                    <div class="card border-success shadow-sm">
+                                        <div class="card-header bg-success text-white fw-bold">
+                                            <i class="bi bi-lightbulb"></i> Rekomendasi Saham
+                                        </div>
+                                        <ul class="list-group list-group-flush" id="rekomendasiList">
+                                            <li class="list-group-item text-center text-muted">
+                                                Silakan pilih saham terlebih dahulu...
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         <div class="sectionPic bouncepic" id="sectionPic">
             <img src="/img/hero-image.png" alt="">
@@ -66,129 +134,113 @@
     <!-- Carousel -->
     <section>
         <div class="carouselContainer">
-            <div class="eachCarousel eachCarouselBorder">
-                <img src="/img/bitcoin-icon.png" alt="">
-                <article class="carouselDesc">
-                    <h1 class="carouselTitle">Bitcoin</h1>
-                    <p class="carouselPara">Bitcoin is an innovative payment network</p>
-                    <div class="carouselPrice">
-                        <h3>$34,000</h3>
-                        <span class="rect"></span>
-                        <h3 class="carouselDiscount">15%</h3>
-                    </div>
-                    <button class="btn carouselBtn">Buy & Trade</button>
-                </article>
-            </div>
 
-            <div class="eachCarousel">
-                <img src="/img/ethereum-icon.png" alt="">
-                <article class="carouselDesc">
-                    <h1 class="carouselTitle">Ethereum</h1>
-                    <p class="carouselPara">Ethereum is open-source blockchain currency</p>
-                    <div class="carouselPrice">
-                        <h3>$25,600</h3>
-                        <span class="rect"></span>
-                        <h3 class="carouselDiscount">9%</h3>
-                    </div>
-                    <button class="btn carouselBtn">Buy & Trade</button>
-                </article>
-            </div>
+            @foreach ($saham->take(45) as $index => $item)
+                <div class="eachCarousel {{ $index == 0 ? 'eachCarouselBorder' : '' }}">
+                    <!-- Gambar statis sesuai urutan -->
+                    @if ($index % 3 == 0)
+                        <img src="/img/bitcoin-icon.png" alt="">
+                    @elseif($index % 3 == 1)
+                        <img src="/img/ethereum-icon.png" alt="">
+                    @else
+                        <img src="/img/tether-icon.png" alt="">
+                    @endif
 
-            <div class="eachCarousel">
-                <img src="/img/tether-icon.png" alt="">
-                <article class="carouselDesc">
-                    <h1 class="carouselTitle">Tether</h1>
-                    <p class="carouselPara">Tether is a stable coin cryptocurrency</p>
-                    <div class="carouselPrice">
-                        <h3>$7,000</h3>
-                        <span class="rect"></span>
-                        <h3 class="carouselDiscount">4%</h3>
-                    </div>
-                    <button class="btn carouselBtn">Buy & Trade</button>
-                </article>
-            </div>
+                    <article class="carouselDesc">
+                        <h1 class="carouselTitle">{{ $item->kode_saham }}</h1>
+                        <p class="carouselPara">{{ $item->nama_saham }}</p>
+                        <div class="carouselPrice">
+                            <h3>PER: {{ $item->per }}</h3>
+                            <span class="rect"></span>
+                            <h3 class="carouselDiscount">ROE: {{ $item->roe }}%</h3>
+                        </div>
+                        <button class="btns carouselBtn lihatDetailBtn" data-id="{{ $item->id }}"
+                            data-bs-toggle="modal" data-bs-target="#detailModal">
+                            Lihat Detail
+                        </button>
+                    </article>
+                </div>
+            @endforeach
 
-            <div class="eachCarousel">
-                <img src="/img/bitcoin-icon.png" alt="">
-                <article class="carouselDesc">
-                    <h1 class="carouselTitle">Bitcoin</h1>
-                    <p class="carouselPara">Bitcoin is an innovative payment network</p>
-                    <div class="carouselPrice">
-                        <h3>$34,000</h3>
-                        <span class="rect"></span>
-                        <h3 class="carouselDiscount">15%</h3>
-                    </div>
-                    <button class="btn carouselBtn">Buy & Trade</button>
-                </article>
-            </div>
-
-            <div class="eachCarousel">
-                <img src="/img/ethereum-icon.png" alt="">
-                <article class="carouselDesc">
-                    <h1 class="carouselTitle">Ethereum</h1>
-                    <p class="carouselPara">Ethereum is open-source blockchain currency</p>
-                    <div class="carouselPrice">
-                        <h3>$25,600</h3>
-                        <span class="rect"></span>
-                        <h3 class="carouselDiscount">9%</h3>
-                    </div>
-                    <button class="btn carouselBtn">Buy & Trade</button>
-                </article>
-            </div>
-
-            <div class="eachCarousel">
-                <img src="/img/tether-icon.png" alt="">
-                <article class="carouselDesc">
-                    <h1 class="carouselTitle">Tether</h1>
-                    <p class="carouselPara">Tether is a stable coin cryptocurrency</p>
-                    <div class="carouselPrice">
-                        <h3>$7,000</h3>
-                        <span class="rect"></span>
-                        <h3 class="carouselDiscount">4%</h3>
-                    </div>
-                    <button class="btn carouselBtn">Buy & Trade</button>
-                </article>
-            </div>
         </div>
+
+        <!-- indikator carousel -->
         <div class="carouselIndicator">
-            <div class="indicator activeIndicator" onclick="slideCarousel(0)"></div>
-            <div class="indicator" onclick="slideCarousel(1)"></div>
-            <div class="indicator" onclick="slideCarousel(2)"></div>
-            <div class="indicator" onclick="slideCarousel(3)"></div>
-            <div class="indicator" onclick="slideCarousel(4)"></div>
-            <div class="indicator" onclick="slideCarousel(5)"></div>
+            @foreach ($saham->take(45) as $index => $item)
+                <div class="indicator {{ $index == 0 ? 'activeIndicator' : '' }}"
+                    onclick="slideCarousel({{ $index }})"></div>
+            @endforeach
         </div>
     </section>
+
+    <!-- Modal Detail Saham -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="detailModalLabel">Detail Saham</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- Fundamental -->
+                        <div class="col-md-6">
+                            <h6><i class="bi bi-bar-chart-fill text-primary"></i> Informasi Fundamental</h6>
+                            <ul class="list-group" id="modalFundamental">
+                                <li class="list-group-item text-center text-muted">Memuat data...</li>
+                            </ul>
+                        </div>
+
+                        <!-- Rekomendasi -->
+                        <div class="col-md-6">
+                            <h6><i class="bi bi-lightbulb-fill text-warning"></i> Rekomendasi Saham</h6>
+                            <ul class="list-group" id="modalRekomendasi">
+                                <li class="list-group-item text-center text-muted">Memuat data...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
     <!-- Processes -->
     <section class="gridSection">
         <div class="sectionDesc processessDesc">
-            <h1 class="sectionHeader">Chain Process</h1>
-            <p class="sectionPara">We do not charge any fees and we do not require
-                any registration. You keep your privacy and your
-                coins.
+            <h1 class="sectionHeader">Proses Analisis Saham</h1>
+            <p class="sectionPara">
+                Sistem ini membantu menganalisis data fundamental saham untuk memberikan
+                rekomendasi terbaik. Semua proses dilakukan otomatis tanpa biaya tambahan.
             </p>
+
             <div class="eachProcesses">
                 <img src="/img/handshake-icon-white-line.svg" alt="handshake">
                 <div class="eachprocessesPara">
-                    <h1 class="processTitle">Trading</h1>
+                    <h1 class="processTitle">Fuzzifikasi</h1>
                     <p>
-                        The act of speculating on cryptocurrency price movements
-                        via a CFD trading account, or buying and selling.
+                        Data saham seperti PER, ROE, Volume, dan Market Cap diubah ke dalam
+                        bentuk himpunan fuzzy agar dapat dihitung tingkat kelayakannya.
                     </p>
                 </div>
             </div>
+
             <div class="eachProcesses">
-                <img src="/img/cart-icon-white-line.svg" alt="handshake">
+                <img src="/img/cart-icon-white-line.svg" alt="cart">
                 <div class="eachprocessesPara">
-                    <h1 class="processTitle">Buying</h1>
+                    <h1 class="processTitle">Rekomendasi</h1>
                     <p>
-                        Best cryptocurrency exchanges currently purchase Bitcoin,
-                        Ethereum, and Litecoin other coins and tokens on the platform.
+                        Hasil analisis ditampilkan sebagai rekomendasi saham dengan kategori
+                        Tidak Layak, Layak, atau Sangat Layak sehingga memudahkan pengambilan
+                        keputusan investasi.
                     </p>
                 </div>
             </div>
         </div>
+
         <div class="sectionPic bouncepic processesPic" id="sectionPic">
             <img src="/img/chain-process-img.png" alt="">
         </div>
@@ -197,77 +249,78 @@
     <!-- Markets -->
     <section class="gridSection">
         <div class="sectionDesc marketDesc">
-            <h1 class="sectionHeader">Markets at finger</h1>
-            <p class="sectionPara">The Blockchain is a decentralized,
-                digital ledger of transactions that are recorded
-                confirmed
+            <h1 class="sectionHeader">Pantau Saham Lebih Mudah</h1>
+            <p class="sectionPara">
+                Dari analisis data fundamental hingga rekomendasi investasi, semua proses dilakukan
+                secara otomatis untuk membantu investor mengambil keputusan dengan cepat dan tepat.
             </p>
+
             <div class="eachMarket">
-                <img src="/img/buy-icon-color.svg" alt="handshake">
+                <img src="/img/buy-icon-color.svg" alt="analisis">
                 <div>
-                    <h1 class="marketTitle">Buying</h1>
+                    <h1 class="marketTitle">Data Saham Lengkap</h1>
                     <p class="darkPara">
-                        Best cryptocurrency exchanges currently purchase
-                        Bitcoin, Ethereum, and Litecoin other coins and tokens
-                        on the platform.
+                        Informasi kode, nama saham, PER, ROE, volume, dan market cap disajikan secara detail
+                        untuk memudahkan proses evaluasi.
                     </p>
                 </div>
             </div>
+
             <div class="eachMarket">
-                <img src="/img/trading-icon-color.svg" alt="handshake">
+                <img src="/img/trading-icon-color.svg" alt="fuzzy">
                 <div>
-                    <h1 class="marketTitle">Trading</h1>
+                    <h1 class="marketTitle">Proses Fuzzy</h1>
                     <p class="darkPara">
-                        The act of speculating on cryptocurrency price movements
-                        via a CFD trading account, or buying and selling.
+                        Sistem menggunakan logika fuzzy untuk mengubah data mentah menjadi informasi yang terukur
+                        sesuai kategori kinerja saham.
                     </p>
                 </div>
             </div>
+
             <div class="eachMarket">
-                <img src="/img/support-icon-color.svg" alt="handshake">
+                <img src="/img/support-icon-color.svg" alt="rekomendasi">
                 <div>
-                    <h1 class="marketTitle">Supporting</h1>
+                    <h1 class="marketTitle">Hasil Rekomendasi</h1>
                     <p class="darkPara">
-                        Don’t worry if you’re new to crypto and digital
-                        currencies – Skrill makes setting up a cryptocurrency
-                        wallet easy.
+                        Setiap saham diberi label rekomendasi seperti <b>Tidak Layak</b>, <b>Layak</b>,
+                        atau <b>Sangat Layak</b> berdasarkan hasil analisis.
                     </p>
                 </div>
             </div>
+
             <div class="eachMarket">
-                <img src="/img/online-icon-color.svg" alt="handshake">
+                <img src="/img/online-icon-color.svg" alt="akses">
                 <div>
-                    <h1 class="marketTitle">Online</h1>
+                    <h1 class="marketTitle">Dashboard Publik</h1>
                     <p class="darkPara">
-                        Cryptocurrency, especially Bitcoin,
-                        has proven to be a popular trading
-                        vehicle, even if legendary investors
-                        as good.
+                        Investor dapat mengakses informasi saham dan hasil rekomendasi kapan saja
+                        melalui halaman dashboard online.
                     </p>
                 </div>
             </div>
         </div>
+
         <div class="sectionPic marketspicSection" id="sectionPic">
-            <h1 class="marketspicHeader">CRYPTOCURRENCY</h1>
+            <h1 class="marketspicHeader">ANALISIS SAHAM</h1>
             <div class="marketsPicContainer">
                 <div class="marketPic marketPic1">
                     <img src="/img/persent-icon-white.svg" alt="">
-                    <article class="marketTitle">Hot Sale</article>
+                    <article class="marketTitle">Data</article>
                 </div>
 
                 <div class="marketPic marketPic2">
                     <img src="/img/bitcoin-icon-white.svg" alt="">
-                    <article class="marketTitle">Bit coin</article>
+                    <article class="marketTitle">Fuzzy</article>
                 </div>
 
                 <div class="marketPic marketPic3">
                     <img src="/img/ethereum-white-icon.svg" alt="">
-                    <article class="marketTitle">ETHEREUM</article>
+                    <article class="marketTitle">Rekomendasi</article>
                 </div>
 
                 <div class="marketPic marketPic4">
                     <img src="/img/handshake-icon-white.svg" alt="">
-                    <article class="marketTitle">CONNECTING</article>
+                    <article class="marketTitle">Aksi</article>
                 </div>
             </div>
         </div>
@@ -276,56 +329,56 @@
     <!-- Dashboard -->
     <section class="gridSection">
         <div class="sectionDesc dashboardDesc">
-            <h1 class="sectionHeader">Trade crypto in seconds</h1>
+            <h1 class="sectionHeader">Pantau Saham dalam Sekejap</h1>
             <p class="sectionPara">
-                But with prouple, you can mine bitcoin from your own phone!
-                You no longer have to worry about costly transactions.
+                Dengan sistem ini, Anda dapat melihat performa saham, analisis fundamental,
+                hingga hasil rekomendasi investasi secara langsung tanpa ribet.
             </p>
-            <button class="btn">Explore Now</button>
+            <button class="btns">Lihat Rekomendasi</button>
         </div>
 
         <div class="sectionPic dashboardPic">
-            <img src="/img/dashboard-dark.jpg" alt="">
+            <img src="/img/dashboard-dark.jpg" alt="dashboard saham">
         </div>
-
     </section>
 
     <div class="fundSection">
         <div class="sectionDesc">
-            <h1 class="sectionHeader">Control your funds</h1>
+            <h1 class="sectionHeader">Kelola Investasi Anda</h1>
             <p class="sectionPara">
-                Our mining pool offers some of the most competitive contracts in the market.
+                Semua data saham diproses otomatis melalui sistem analisis dan fuzzy,
+                memberikan rekomendasi yang akurat untuk mendukung keputusan investasi.
             </p>
             <div class="fundsContainer">
                 <div class="fund">
-                    <img src="/img/cryptocurrency-white-icon.svg" alt="cryptocurrency">
-                    <h1 class="fundType">Support All Currency</h1>
+                    <img src="/img/cryptocurrency-white-icon.svg" alt="data">
+                    <h1 class="fundType">Data Fundamental</h1>
                     <p class="darkPara">
-                        Accept and process payments from all types of currencies.
+                        Menampilkan PER, ROE, Volume, dan Market Cap dari setiap saham.
                     </p>
                 </div>
 
                 <div class="fund">
-                    <img src="/img/blockchain-white-icon.svg" alt="cryptocurrency">
-                    <h1 class="fundType">Block Chain System</h1>
+                    <img src="/img/blockchain-white-icon.svg" alt="fuzzy">
+                    <h1 class="fundType">Proses Fuzzy</h1>
                     <p class="darkPara">
-                        How it Works, Benefits and its Deployment in Financial
+                        Data diolah dengan logika fuzzy untuk menghasilkan analisis yang lebih objektif.
                     </p>
                 </div>
 
                 <div class="fund">
-                    <img src="/img/cryptocurrency-sell-white-icon.svg" alt="cryptocurrency">
-                    <h1 class="fundType">Fund Selling</h1>
+                    <img src="/img/cryptocurrency-sell-white-icon.svg" alt="rekomendasi">
+                    <h1 class="fundType">Hasil Rekomendasi</h1>
                     <p class="darkPara">
-                        How to Profit in the Crypto Markets through Investing
+                        Setiap saham diberi rekomendasi: Tidak Layak, Layak, atau Sangat Layak.
                     </p>
                 </div>
 
                 <div class="fund">
-                    <img src="/img/cryptocurrency-card-white-icon.svg" alt="cryptocurrency">
-                    <h1 class="fundType">Crypto Card</h1>
+                    <img src="/img/cryptocurrency-card-white-icon.svg" alt="akses">
+                    <h1 class="fundType">Akses Mudah</h1>
                     <p class="darkPara">
-                        Crypto Cards and Why Cryptocurrency are the Future
+                        Semua informasi dapat diakses secara online kapan saja dan di mana saja.
                     </p>
                 </div>
             </div>
@@ -342,12 +395,12 @@
                     @if ($errors->has('login'))
                         <div class="alert alert-danger">{{ $errors->first('login') }}</div>
                     @endif
-                     <input type="text" name="username" id="" placeholder="username"
+                    <input type="text" name="username" id="username" placeholder="username"
                         class="contactInput" required>
-                     <input type="password" name="password" id="" placeholder="password"
+                    <input type="password" name="password" id="password" placeholder="password"
                         class="contactInput" required>
                 </div>
-                <button type="submit" class="btn primaryBtn contactBtn">Login</button>
+                <button type="submit" class="btns primaryBtn contactBtn">Login</button>
             </form>
         </div>
         <div class="sectionPic bouncepic contactPic" id="sectionPic">
@@ -358,60 +411,153 @@
     <footer>
         <div class="joinSection">
             <div class="joinDesc">
-                <h1 class="sectionHeader">Join with us</h1>
+                <h1 class="sectionHeader">Bergabung Bersama Kami</h1>
                 <p class="sectionPara">
-                    Once you have created your account, you can purchase coins from website
+                    Dapatkan analisis fundamental, fuzzifikasi, dan rekomendasi saham
+                    untuk membantu Anda membuat keputusan investasi yang lebih cerdas.
                 </p>
             </div>
-            <button class="btn primaryBtn">JOIN NOW</button>
+            <button class="btns primaryBtn">Lihat Rekomendasi</button>
         </div>
 
         <div class="footerlinksContainer">
             <div class="footerAboutus">
-                <img src="/img/logo-white.png" alt="">
-                <p class="darkPara">With no commissions and a simple user interface,
-                    Prouple is the most reliable way to trade for
-                    Cryptocurrency.
+                <img src="/img/logo-white.png" alt="Logo Saham">
+                <p class="darkPara">
+                    Sistem Rekomendasi Saham berbasis analisis fundamental dan fuzzy logic.
+                    Memberikan hasil rekomendasi Layak atau Tidak Layak secara objektif,
+                    mudah diakses kapan saja, di mana saja.
                 </p>
                 <div class="footersociallinkContainer">
-                    <img class="sociallink" src="/img/fabook-icon-white.svg" alt="">
-                    <img class="sociallink" src="/img/twitter-icon-white.svg" alt="">
-                    <img class="sociallink" src="/img/inkedin-icon-white.svg" alt="">
-                    <img class="sociallink" src="/img/whatsapp-icon-white.svg" alt="">
+                    <img class="sociallink" src="/img/fabook-icon-white.svg" alt="facebook">
+                    <img class="sociallink" src="/img/twitter-icon-white.svg" alt="twitter">
+                    <img class="sociallink" src="/img/inkedin-icon-white.svg" alt="linkedin">
+                    <img class="sociallink" src="/img/whatsapp-icon-white.svg" alt="whatsapp">
                 </div>
             </div>
 
             <div class="footerlink">
-                <h1 class="linkTitle">Explore</h1>
-                <a href="#" class="eachLink">About us</a>
+                <h1 class="linkTitle">Jelajahi</h1>
+                <a href="#" class="eachLink">Tentang Kami</a>
                 <a href="#" class="eachLink">FAQ</a>
-                <a href="#" class="eachLink">Blog</a>
-                <a href="#" class="eachLink">Contact</a>
+                <a href="#" class="eachLink">Artikel</a>
+                <a href="#" class="eachLink">Kontak</a>
             </div>
 
             <div class="footerlink">
-                <h1 class="linkTitle">Service</h1>
-                <a href="#" class="eachLink">Mining</a>
-                <a href="#" class="eachLink">Control Data</a>
-                <a href="#" class="eachLink">Design</a>
-                <a href="#" class="eachLink">Security</a>
+                <h1 class="linkTitle">Layanan</h1>
+                <a href="#" class="eachLink">Analisis Saham</a>
+                <a href="#" class="eachLink">Fuzzifikasi Data</a>
+                <a href="#" class="eachLink">Rekomendasi Investasi</a>
+                <a href="#" class="eachLink">Laporan PDF</a>
             </div>
 
             <div class="footerlink">
-                <h1 class="linkTitle">Resource</h1>
-                <a href="#" class="eachLink">Style Guide</a>
-                <a href="#" class="eachLink">Change Log</a>
-                <a href="#" class="eachLink">License</a>
+                <h1 class="linkTitle">Sumber Daya</h1>
+                <a href="#" class="eachLink">Panduan</a>
+                <a href="#" class="eachLink">Update Sistem</a>
+                <a href="#" class="eachLink">Lisensi</a>
             </div>
         </div>
 
         <div class="footerCopyright">
-            <p>&copy; 2023 design and developed by <a href="#" class="developedBy">Ariel</a>.</p>
+            <p>&copy; 2025 Sistem Rekomendasi Saham | Developed by
+                <a href="https://avinto.my.id" target="_blank" class="developedBy">Ariel Dandi</a>.
+            </p>
         </div>
     </footer>
 
 
     <script src="/script/scripts.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
+    </script>
+    <!-- Script AJAX -->
+    <script>
+        document.getElementById('sahamSelect').addEventListener('change', function() {
+            let sahamId = this.value;
+            if (sahamId) {
+                fetch(`/api/saham/${sahamId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // === Update Fundamental ===
+                        let fundamentalList = document.getElementById('fundamentalList');
+                        fundamentalList.innerHTML = `
+                    <li class="list-group-item"><i class="bi bi-upc-scan text-primary"></i> <strong>Kode Saham:</strong> ${data.saham.kode_saham}</li>
+                    <li class="list-group-item"><i class="bi bi-building text-primary"></i> <strong>Nama Saham:</strong> ${data.saham.nama_saham}</li>
+                    <li class="list-group-item"><i class="bi bi-percent text-primary"></i> <strong>PER:</strong> ${data.saham.per}</li>
+                    <li class="list-group-item"><i class="bi bi-graph-up text-primary"></i> <strong>ROE:</strong> ${data.saham.roe}</li>
+                    <li class="list-group-item"><i class="bi bi-bar-chart text-primary"></i> <strong>Volume:</strong> ${Number(data.saham.volume).toLocaleString()}</li>
+                    <li class="list-group-item"><i class="bi bi-cash-coin text-primary"></i> <strong>Market Cap:</strong> ${Number(data.saham.market_cap).toLocaleString()}</li>
+                `;
+
+                        // === Update Rekomendasi ===
+                        let rekomendasiList = document.getElementById('rekomendasiList');
+                        if (data.rekomendasi.length > 0) {
+                            rekomendasiList.innerHTML = data.rekomendasi.map((r, i) => `
+                        <li class="list-group-item">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                            <strong>${i+1}. ${r.saham.kode_saham} - ${r.saham.nama_saham}</strong><br>
+                            <span class="badge bg-${r.kategori === 'Sangat Layak' ? 'success' : (r.kategori === 'Layak' ? 'primary' : 'secondary')}">
+                                ${r.kategori}
+                            </span>
+                            <span class="ms-2 text-muted">${r.persentase}%</span>
+                        </li>
+                    `).join('');
+                        } else {
+                            rekomendasiList.innerHTML =
+                                `<li class="list-group-item text-center text-muted">Tidak ada rekomendasi untuk saham ini.</li>`;
+                        }
+                    })
+                    .catch(error => console.error(error));
+            }
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.lihatDetailBtn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                let sahamId = this.getAttribute('data-id');
+
+                // tampilkan loading sementara
+                document.getElementById('modalFundamental').innerHTML =
+                    `<li class="list-group-item text-center text-muted">Memuat data...</li>`;
+                document.getElementById('modalRekomendasi').innerHTML =
+                    `<li class="list-group-item text-center text-muted">Memuat data...</li>`;
+
+                fetch(`/api/saham/${sahamId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        // isi fundamental
+                        document.getElementById('modalFundamental').innerHTML = `
+                    <li class="list-group-item"><i class="bi bi-upc-scan text-primary"></i> <strong>Kode Saham:</strong> ${data.saham.kode_saham}</li>
+                    <li class="list-group-item"><i class="bi bi-building text-primary"></i> <strong>Nama Saham:</strong> ${data.saham.nama_saham}</li>
+                    <li class="list-group-item"><i class="bi bi-percent text-primary"></i> <strong>PER:</strong> ${data.saham.per}</li>
+                    <li class="list-group-item"><i class="bi bi-graph-up text-primary"></i> <strong>ROE:</strong> ${data.saham.roe}</li>
+                    <li class="list-group-item"><i class="bi bi-bar-chart text-primary"></i> <strong>Volume:</strong> ${Number(data.saham.volume).toLocaleString()}</li>
+                    <li class="list-group-item"><i class="bi bi-cash-coin text-primary"></i> <strong>Market Cap:</strong> ${Number(data.saham.market_cap).toLocaleString()}</li>
+                `;
+
+                        // isi rekomendasi
+                        if (data.rekomendasi.length > 0) {
+                            document.getElementById('modalRekomendasi').innerHTML = data.rekomendasi
+                                .map((r, i) => `
+                        <li class="list-group-item">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                            <strong>${i+1}. ${r.saham.kode_saham} - ${r.saham.nama_saham}</strong><br>
+                            <span class="badge bg-${r.kategori === 'Sangat Layak' ? 'success' : (r.kategori === 'Layak' ? 'primary' : 'secondary')}">
+                                ${r.kategori}
+                            </span>
+                            <span class="ms-2 text-muted">${r.persentase}%</span>
+                        </li>
+                    `).join('');
+                        } else {
+                            document.getElementById('modalRekomendasi').innerHTML =
+                                `<li class="list-group-item text-center text-muted">Tidak ada rekomendasi.</li>`;
+                        }
+                    })
+                    .catch(err => console.error(err));
+            });
+        });
+    </script>
 
 </html>

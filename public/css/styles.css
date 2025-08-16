@@ -19,7 +19,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: var(--darkblue);
+    background-color: var(--darkblue) !important;
     color: var(--white);
 }
 
@@ -55,6 +55,8 @@ header{
     overflow: hidden;
     transition: all .3s ease-in-out;
     z-index: 2;
+
+    flex-wrap: nowrap !important;
 }
 
 .showNav{
@@ -127,6 +129,9 @@ header{
 
 .btnContainer{
     margin-top: 2em;
+}
+a{
+    text-decoration: none !important;
 }
 
 .fa-play{
