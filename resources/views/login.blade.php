@@ -31,7 +31,7 @@
             </ul>
 
             <li class="nav-link"><a href="/">Home</a></li>
-            <li class="nav-link"><a href="#">Rekomendasi</a></li>
+            <li class="nav-link"><a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Rekomendasi</a></li>
             <li class="nav-link"><a href="#login">Login</a></li>
             <li class="sociallinkContainer">
                 <img class="sociallink" src="/img/fabook-icon-white.svg" alt="">
@@ -417,7 +417,7 @@
                     untuk membantu Anda membuat keputusan investasi yang lebih cerdas.
                 </p>
             </div>
-            <button class="btns primaryBtn">Lihat Rekomendasi</button>
+            <button class="btns primaryBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Lihat Rekomendasi</button>
         </div>
 
         <div class="footerlinksContainer">

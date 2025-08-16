@@ -4,7 +4,7 @@
             <img src="/images/logo.webp"  alt="">
         </div>
 
-        <span class="logo_name">Prediksi Saham</span>
+        <span class="logo_name">Saham</span>
     </div>
 
     <div class="menu-items">
